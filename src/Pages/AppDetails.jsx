@@ -7,7 +7,7 @@ import reviewIcon from '../assets/icon-review.png'
 import { updateList } from '../utils/localStorage';
 import { Bar, BarChart, CartesianGrid, Legend, Rectangle, Tooltip, XAxis, YAxis } from 'recharts';
 import SkeletonLoader from '../Components/SkeletonLoader';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const AppDetails = () => {
     const { id } = useParams()
@@ -16,6 +16,7 @@ const [isInstalled, setIsInstalled] = useState(false)
 const handleInstall = () => {
   updateList(detailedApp)
   setIsInstalled(true)
+  toast("App Installed Successfully")
 }
   const detailedApp = apps.find(p => p.id === Number(id))
   useEffect(() => {
@@ -47,6 +48,7 @@ const handleInstall = () => {
     </div>
     <div className="card-actions justify-start mt-3">
       <button onClick={() => handleInstall()} className={`btn text-white text-lg bg-green-400 border-none font-bold ${isInstalled ? 'bg-gray-400' : 'bg-green-400'}`} disabled={isInstalled}>{isInstalled ? 'Installed' : `Install Now (${size} MB)`}</button>
+      
     </div>
     
   </div>
@@ -75,6 +77,7 @@ const handleInstall = () => {
     </BarChart>
   </div>
 </div>
+< ToastContainer />
    </>
   );
 };
