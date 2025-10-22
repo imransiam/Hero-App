@@ -32,7 +32,7 @@ const handleInstall = () => {
   const { title, image, companyName,  downloads, size,reviews,ratingAvg} = detailedApp || {}
   return (
    <>
-    <div className="card card-side bg-base-100 shadow-sm max-w-7xl mx-auto">
+    <div className="card md:card-side bg-base-100 shadow-sm max-w-7xl mx-auto">
   <figure>
     <img className='w-95 h-95 object-cover p-5'
       src={image}

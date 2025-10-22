@@ -16,9 +16,9 @@ const filteredApps = apps.slice(0, 8);
   return (
     <div className='overflow-x-hidden '>
       <div className='flex flex-col justify-center items-center'>
-        <h1 className='font-bold text-9xl '><span className=''>We Build </span><br /> </h1>
-        <h1 className='font-bold text-9xl'><span className=' bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent '>Productive</span> Apps</h1>
-        <p className='text-gray-600 mt-7'>At HERO.IO, we craft innovative apps designed to make everyday life simpler, smarter, and more exciting.<br/> Our goal is to turn your ideas into digital experiences that truly make an impact.</p>
+        <h1 className='font-bold text-6xl md:text-9xl '><span className=''>We Build </span><br /> </h1>
+        <h1 className='font-bold text-6xl md:text-9xl text-center '><span className=' bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent '>Productive</span > Apps</h1>
+        <p className='text-gray-600 mt-7 text-center'>At HERO.IO, we craft innovative apps designed to make everyday life simpler, smarter, and more exciting.<br/> Our goal is to turn your ideas into digital experiences that truly make an impact.</p>
       </div>
       <div className='flex justify-center gap-3 mt-5'>
         <div className='flex items-center gap-2 font-bold bg-white py-2 px-3  rounded-xl' ><img className='w-6' src={playstore} alt="" /><p>Google Play</p></div>
@@ -27,7 +27,7 @@ const filteredApps = apps.slice(0, 8);
       <div className='flex justify-center items-center mt-10'>
         <img className='max-w-full h-auto' src={hero} alt="" />
       </div>
-      <div className='bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white  py-20  '>
+      <div className='bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white  py-20 space-y-2  '>
         <h1 className=' text-center text-3xl font-bold pb-7'>Trusted by Millions, Built for You</h1>
         <div className='grid grid-cols-1 sm:grid-cols-3 pb-10 text-center max-w-6xl mx-auto'>
           <p>Total Downloads <br /><span className='text-6xl font-bold'>29.6M</span><br />21% more than last month</p>

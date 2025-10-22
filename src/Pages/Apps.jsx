@@ -15,9 +15,9 @@ const Apps = () => {
 
   return (
     <div className='max-w-7xl mx-auto'>
-      <div className='flex flex-col justify-center items-center ' ><h1 className='text-5xl font-bold mb-5'>Our All Applications</h1><p className='text-gray-600'>Explore All Apps on the Market developed by us. We code for Millions</p></div>
-      <div className='flex justify-between py-5 items-center'>
-        <h1 className='text-3xl font-semibold'>
+      <div className='flex flex-col justify-center items-center text-center ' ><h1 className='text-5xl font-bold mb-5'>Our All Applications</h1><p className='text-gray-600'>Explore All Apps on the Market developed by us. We code for Millions</p></div>
+      <div className='flex flex-col gap-5 md:flex justify-between py-5 items-center'>
+        <h1 className='text-3xl font-semibold '>
           All Products{' '}
           <span className='text-sm text-gray-500'>
             ({searchedApps.length}) Products Found.
