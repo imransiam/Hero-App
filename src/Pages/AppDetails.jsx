@@ -6,6 +6,7 @@ import starIcon from '../assets/icon-ratings.png'
 import reviewIcon from '../assets/icon-review.png'
 import { updateList } from '../utils/localStorage';
 import { Bar, BarChart, CartesianGrid, Legend, Rectangle, Tooltip, XAxis, YAxis } from 'recharts';
+import SkeletonLoader from '../Components/SkeletonLoader';
 
 
 const AppDetails = () => {
@@ -14,7 +15,7 @@ const AppDetails = () => {
 
   const detailedApp = apps.find(p => p.id === Number(id))
 
-  if (loading) return <p>Loading.......</p>
+  if (loading) return <SkeletonLoader count={1} />
 
   const { title, image, companyName,  downloads, size,reviews,ratingAvg} = detailedApp || {}
   return (

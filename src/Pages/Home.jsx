@@ -4,11 +4,13 @@ import appstore from '../assets/images (1).jpeg';
 import hero from '../assets/hero.png';
 import useApps from '../Hooks/useApps';
 import AppCard from '../Components/AppCard';
+import { Link } from 'react-router';
+import SkeletonLoader from '../Components/SkeletonLoader';
 
 
 
 const Home = () => {
-const { apps,  } = useApps();
+const { apps, loading } = useApps();
 const filteredApps = apps.slice(0, 8);
   
   return (
@@ -35,12 +37,18 @@ const filteredApps = apps.slice(0, 8);
       </div>
       <div className='flex  flex-col justify-center items-center mt-10'><h1 className='font-bold text-4xl mb-3'>Trending Apps</h1><p className='text-gray-500'>Explore All Trending Apps on the Market developed by us</p></div>
      <div className=''>
-       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10 max-w-7xl mx-auto px-4'>
+       {
+        loading ? (<SkeletonLoader count={8}></SkeletonLoader>) : (
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10 max-w-7xl mx-auto px-4'>
        {
         filteredApps.map(app => (<AppCard key={app.id} app={app}></AppCard>))
        }
       </div>
+        )
+       }
+      <div className='flex justify-center items-center mt-10'><Link to='/app'><div className='btn bg-gradient-to-r  from-[#632EE3] to-[#9F62F2] text-white '>Show All Apps</div></Link></div>
      </div>
+   
     </div>
   );
 };

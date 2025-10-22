@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useApps from '../Hooks/useApps';
 import AppCard from '../Components/AppCard';
+import SkeletonLoader from '../Components/SkeletonLoader';
 
 const Apps = () => {
   const {apps,loading} = useApps();
@@ -32,7 +33,7 @@ const Apps = () => {
         </label>
       </div>
       {loading ? (
-        <p>Loading</p>
+        <SkeletonLoader count={20} />
       ) : (
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10  px-4'>
           {searchedApps.map(app => (

@@ -4,10 +4,13 @@ import { useState } from 'react';
 import { loadInstall, uninstall } from '../utils/localStorage'
 import starIcon from '../assets/icon-ratings.png'
 import downloadIcon from '../assets/icon-downloads.png'
+import useApps from '../Hooks/useApps';
+import SkeletonLoader from '../Components/SkeletonLoader';
 
 
 const Installation = () => {
   const [installed, setInstalled] = useState(() => loadInstall())
+  const {loading} = useApps();
   const [sortOrder, setSortOrder] = useState('none')
  console.log(loadInstall);
  
@@ -32,7 +35,8 @@ const Installation = () => {
 
   
   return (
-     <div className='space-y-6'>
+    loading ? (<SkeletonLoader count={8}></SkeletonLoader>) : (
+       <div className='space-y-6'>
       <div className='flex justify-between py-5 items-center'>
         <h1 className='text-3xl font-semibold'>
           Installed Apps {}
@@ -87,6 +91,7 @@ const Installation = () => {
 
      
     </div>
+    )
   );
 };
 

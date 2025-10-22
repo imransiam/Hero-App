@@ -17,7 +17,7 @@ const AppCard = ({app,}) => {
     <h2 className="card-title">{title} - {companyName}</h2>
 
     <div className="card-actions justify-between">
-      <button className="btn "><img className='w-5' src={downloadIcon} alt="" />{downloads}</button>
+      <button className="btn "><img className='w-5' src={downloadIcon} alt="" />{downloads}M</button>
       <button className="btn "><img className='w-5' src={starIcon} alt="" />{ratingAvg}</button>
     </div>
   </div>
