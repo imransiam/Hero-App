@@ -3,7 +3,7 @@ import downloadIcon from '../assets/icon-downloads.png'
 import starIcon from '../assets/icon-ratings.png'
 import { Link } from 'react-router';
 const AppCard = ({app,}) => {
-  const {image, title, companyName, downloads, ratingAvg} = app
+  const {image, title, companyName, downloads, ratingAvg, id} = app
   return (
     <>
     <Link to= {`/app/${id}`}>

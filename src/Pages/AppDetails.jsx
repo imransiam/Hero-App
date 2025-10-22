@@ -1,36 +1,69 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import useApps from '../Hooks/useApps';
+import downloadIcon from '../assets/icon-downloads.png'
+import starIcon from '../assets/icon-ratings.png'
+import reviewIcon from '../assets/icon-review.png'
+import { updateList } from '../utils/localStorage';
+import { Bar, BarChart, CartesianGrid, Legend, Rectangle, Tooltip, XAxis, YAxis } from 'recharts';
+
 
 const AppDetails = () => {
     const { id } = useParams()
   const { apps, loading } = useApps()
 
-  const product = apps.find(p => p.id === Number(id))
+  const detailedApp = apps.find(p => p.id === Number(id))
 
   if (loading) return <p>Loading.......</p>
 
-  const { name, image, category, price, description } = product || {}
+  const { title, image, companyName,  downloads, size,reviews,ratingAvg} = detailedApp || {}
   return (
-    <div className='card bg-base-100 border shadow-sm'>
-      <figure className='h-84 overflow-hidden'>
-        <img className='w-full object-cover' src={image} alt='Shoes' />
-      </figure>
-      <div className='card-body'>
-        <h2 className='card-title'>{name}</h2>
-        <p>{description}</p>
-        <p>Category: {category}</p>
-        <p>Price: ${price}</p>
-        <div className='card-actions justify-end'>
-          <button
-            onClick={() => updateList(product)}
-            className='btn btn-outline'
-          >
-            Add to Wishlist
-          </button>
-        </div>
-      </div>
+   <>
+    <div className="card card-side bg-base-100 shadow-sm max-w-7xl mx-auto">
+  <figure>
+    <img className='w-95 h-95 object-cover p-5'
+      src={image}
+      alt="Movie" />
+  </figure>
+  <div className="card-body">
+    <h2 className="card-title font-bold text-2xl">{title}</h2>
+    <p className='border-b-2 border-gray-300  '>Developed by :<span className='text-violet-600 font-semibold'>{companyName}</span></p>
+    <div className='grid grid-cols-3 gap-2 max-w-xl'>
+      <p><img src={downloadIcon} alt="" /> <span className='font-semibold text-sm'>Downloads</span> <br /> <span className='font-bold text-2xl'>{downloads}M</span></p>
+      <p><img src={starIcon} alt="" /> <span className='font-semibold text-sm'>Average Ratings</span> <br /> <span className='font-bold text-2xl'>{ratingAvg}</span></p>
+      <p><img src={reviewIcon} alt="" /> <span className='font-semibold text-sm'>Total Reviews</span> <br /> <span className='font-bold text-2xl'>{reviews}</span></p>
     </div>
+    <div className="card-actions justify-start mt-3">
+      <button onClick={() => updateList(detailedApp)} className="btn text-white text-lg bg-green-400 border-none font-bold">Install Now<span>({size} MB)</span></button>
+    </div>
+    
+  </div>
+</div>
+<div className='max-w-7xl mx-auto bg-white p-5 m-5'>
+  <h1 className='font-bold '>Ratings</h1>
+  <div>
+    <BarChart
+    layout="vertical"
+      style={{ width: '100%', maxWidth: '700px', maxHeight: '70vh', aspectRatio: 1.618 }}
+      responsive
+      data={detailedApp.ratings}
+      margin={{
+        top: 5,
+        right: 0,
+        left: 0,
+        bottom: 5,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis type="number" dataKey="count" />
+  <YAxis type="category" dataKey="name" />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="count" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+    </BarChart>
+  </div>
+</div>
+   </>
   );
 };
 
