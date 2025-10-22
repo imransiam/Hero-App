@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import useApps from '../Hooks/useApps';
 import downloadIcon from '../assets/icon-downloads.png'
@@ -12,8 +12,19 @@ import SkeletonLoader from '../Components/SkeletonLoader';
 const AppDetails = () => {
     const { id } = useParams()
   const { apps, loading } = useApps()
-
+const [isInstalled, setIsInstalled] = useState(false)
+const handleInstall = () => {
+  updateList(detailedApp)
+  setIsInstalled(true)
+}
   const detailedApp = apps.find(p => p.id === Number(id))
+  useEffect(() => {
+    if (detailedApp) {
+      const installedApps = JSON.parse(localStorage.getItem('install') || '[]')
+      const appInstalled = installedApps.some(app => app.id === detailedApp.id)
+      setIsInstalled(appInstalled)
+    }
+  }, [detailedApp])
 
   if (loading) return <SkeletonLoader count={1} />
 
@@ -35,7 +46,7 @@ const AppDetails = () => {
       <p><img src={reviewIcon} alt="" /> <span className='font-semibold text-sm'>Total Reviews</span> <br /> <span className='font-bold text-2xl'>{reviews}</span></p>
     </div>
     <div className="card-actions justify-start mt-3">
-      <button onClick={() => updateList(detailedApp)} className="btn text-white text-lg bg-green-400 border-none font-bold">Install Now<span>({size} MB)</span></button>
+      <button onClick={() => handleInstall()} className={`btn text-white text-lg bg-green-400 border-none font-bold ${isInstalled ? 'bg-gray-400' : 'bg-green-400'}`} disabled={isInstalled}>{isInstalled ? 'Installed' : `Install Now (${size} MB)`}</button>
     </div>
     
   </div>
